@@ -1,6 +1,6 @@
 
 import React, { createContext, useRef, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import { ApiSidebar } from '@/components/ApiSidebar';
 import { LandingPage } from '@/components/LandingPage';
@@ -24,6 +24,7 @@ const Index = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const mainRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   // Reliable hash scrolling
   useEffect(() => {
@@ -82,7 +83,7 @@ const Index = () => {
             {!isHomePage && (
               <div className="sticky top-0 z-10 bg-background border-b px-6 py-3">
                 <button
-                  onClick={() => window.location.href = '/'}
+                  onClick={() => navigate('/')}
                   className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
