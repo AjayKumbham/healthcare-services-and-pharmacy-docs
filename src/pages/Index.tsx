@@ -16,6 +16,7 @@ import { PharmacyInventoryPage } from './PharmacyInventoryPage';
 import { PamPage } from './PamPage';
 import { PrescriptionsPage } from './PrescriptionsPage';
 import { CartPage } from './CartPage';
+import { NotFound } from './NotFound';
 
 // Create context for main scroll container
 export const MainScrollContext = createContext<React.RefObject<HTMLDivElement> | null>(null);
@@ -107,6 +108,7 @@ const Index = () => {
               <Route path="/pam/*" element={<PamPage />} />
               <Route path="/prescriptions/*" element={<PrescriptionsPage />} />
               <Route path="/cart/*" element={<CartPage />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </MainScrollContext.Provider>

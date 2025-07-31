@@ -16,6 +16,12 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Redirect non-hash URLs to hash-based URLs for GitHub Pages
+      if (!location.hash && location.pathname !== '/PAM-docs/' && location.pathname !== '/PAM-docs/index.html') {
+        location.replace('/PAM-docs/#' + location.pathname.replace('/PAM-docs', '') + location.search + location.hash);
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
