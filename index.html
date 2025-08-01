@@ -21,7 +21,7 @@
     <script>
       // Redirect non-hash URLs to hash-based URLs for GitHub Pages
       if (!location.hash && location.pathname !== '/healthcare-services-and-pharmacy-docs/' && location.pathname !== '/healthcare-services-and-pharmacy-docs/index.html') {
-        location.replace('/healthcare-services-and-pharmacy-docs/#' + location.pathname.replace('/PAM-docs', '') + location.search + location.hash);
+        location.replace('/healthcare-services-and-pharmacy-docs/#' + location.pathname + location.search + location.hash);
       }
     </script>
   </body>
