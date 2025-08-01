@@ -4,29 +4,28 @@ import { EndpointCard } from '@/components/EndpointCard';
 
 export function PharmacyStoresPage() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">Pharmacy Stores Controller</h1>
-        <p className="text-lg text-muted-foreground">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">Pharmacy Stores Controller</h1>
+        <p className="text-base sm:text-lg text-muted-foreground">
           Pharmacy store listings and inventory management.
         </p>
-        <div className="mt-4 p-4 bg-muted rounded-lg">
-          <p className="text-sm">
-            <strong>Base Path:</strong> <code>/api/auth</code>
+        <div className="mt-4 p-3 sm:p-4 bg-muted rounded-lg">
+          <p className="text-xs sm:text-sm">
+            <strong>Base Path:</strong> <code className="break-all">/api/auth</code>
           </p>
         </div>
       </div>
 
-      <div className="space-y-8">
-        <div id="get-all-pharmacy-stores" className="scroll-mt-[100px]">
-          <EndpointCard
-            method="GET"
-            path="/api/auth/stores/all"
-            description="Retrieve a list of all pharmacy stores."
-            auth={true}
-            requestExample={`GET /api/auth/stores/all
+      <div className="space-y-6 sm:space-y-8">
+        <EndpointCard
+          method="GET"
+          path="/api/auth/stores/all"
+          description="Retrieve a list of all pharmacy stores."
+          auth={true}
+          requestExample={`GET /api/auth/stores/all
 Authorization: Bearer <jwt-token>`}
-            responseExample={`200 OK
+          responseExample={`200 OK
 Content-Type: application/json
 
 [
@@ -37,31 +36,30 @@ Content-Type: application/json
     "contact": "1234567890"
   }
 ]`}
-          />
-        </div>
-        <div id="get-inventory-for-a-store" className="scroll-mt-[100px]">
-          <EndpointCard
-            method="POST"
-            path="/api/auth/storeinventory"
-            description="Retrieve the inventory for a specific pharmacy store by store ID."
-            auth={true}
-            parameters={[
-              {
-                name: 'body',
-                type: 'JSON',
-                location: 'body',
-                required: true,
-                description: 'JSON object containing pharmacy ID'
-              }
-            ]}
-            requestExample={`POST /api/auth/storeinventory
+        />
+
+        <EndpointCard
+          method="POST"
+          path="/api/auth/storeinventory"
+          description="Retrieve the inventory for a specific pharmacy store by store ID."
+          auth={true}
+          parameters={[
+            {
+              name: 'body',
+              type: 'JSON',
+              location: 'body',
+              required: true,
+              description: 'JSON object containing pharmacy ID'
+            }
+          ]}
+          requestExample={`POST /api/auth/storeinventory
 Authorization: Bearer <jwt-token>
 Content-Type: application/json
 
 {
   "phId": 1
 }`}
-            responseExample={`200 OK
+          responseExample={`200 OK
 Content-Type: application/json
 
 [
@@ -74,15 +72,14 @@ Content-Type: application/json
     "brandName": "BrandA"
   }
 ]`}
-            errorResponses={[
-              {
-                status: '404 Not Found',
-                description: 'Store or inventory not found',
-                example: 'null'
-              }
-            ]}
-          />
-        </div>
+          errorResponses={[
+            {
+              status: '404 Not Found',
+              description: 'Store or inventory not found',
+              example: 'null'
+            }
+          ]}
+        />
       </div>
     </div>
   );

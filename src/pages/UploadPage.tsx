@@ -4,36 +4,35 @@ import { EndpointCard } from '@/components/EndpointCard';
 
 export function UploadPage() {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">File Upload Controller</h1>
-        <p className="text-lg text-muted-foreground">
+    <div className="max-w-4xl mx-auto p-4 sm:p-6">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">File Upload Controller</h1>
+        <p className="text-base sm:text-lg text-muted-foreground">
           File upload and parsing endpoints for prescription documents.
         </p>
-        <div className="mt-4 p-4 bg-muted rounded-lg">
-          <p className="text-sm">
-            <strong>Base Path:</strong> <code>/api/auth</code>
+        <div className="mt-4 p-3 sm:p-4 bg-muted rounded-lg">
+          <p className="text-xs sm:text-sm">
+            <strong>Base Path:</strong> <code className="break-all">/api/auth</code>
           </p>
         </div>
       </div>
 
-      <div className="space-y-8">
-        <div id="upload-and-parse-prescription-file" className="scroll-mt-[100px]">
-          <EndpointCard
-            method="POST"
-            path="/api/auth/upload"
-            description="Upload a prescription file (PDF, image, etc.) for parsing and extraction of patient and medication data."
-            auth={true}
-            parameters={[
-              {
-                name: 'file',
-                type: 'File',
-                location: 'body',
-                required: true,
-                description: 'Prescription file to upload (multipart/form-data)'
-              }
-            ]}
-            requestExample={`POST /api/auth/upload
+      <div className="space-y-6 sm:space-y-8">
+        <EndpointCard
+          method="POST"
+          path="/api/auth/upload"
+          description="Upload a prescription file (PDF, image, etc.) for parsing and extraction of patient and medication data."
+          auth={true}
+          parameters={[
+            {
+              name: 'file',
+              type: 'File',
+              location: 'body',
+              required: true,
+              description: 'Prescription file to upload (multipart/form-data)'
+            }
+          ]}
+          requestExample={`POST /api/auth/upload
 Authorization: Bearer <jwt-token>
 Content-Type: multipart/form-data
 
@@ -43,7 +42,7 @@ Content-Type: application/pdf
 
 [file content]
 --boundary--`}
-            responseExample={`200 OK
+          responseExample={`200 OK
 Content-Type: application/json
 
 {
@@ -59,23 +58,22 @@ Content-Type: application/json
     { "name": "Metformin 500mg", "days": "60" }
   ]
 }`}
-            errorResponses={[
-              {
-                status: '400 Bad Request',
-                description: 'Invalid or missing file'
-              },
-              {
-                status: '500 Internal Server Error',
-                description: 'Parsing or extraction error'
-              }
-            ]}
-            notes={[
-              'Supports PDF and image formats',
-              'Response fields depend on document content',
-              'Some fields may be missing if not found in document'
-            ]}
-          />
-        </div>
+          errorResponses={[
+            {
+              status: '400 Bad Request',
+              description: 'Invalid or missing file'
+            },
+            {
+              status: '500 Internal Server Error',
+              description: 'Parsing or extraction error'
+            }
+          ]}
+          notes={[
+            'Supports PDF and image formats',
+            'Response fields depend on document content',
+            'Some fields may be missing if not found in document'
+          ]}
+        />
       </div>
     </div>
   );
