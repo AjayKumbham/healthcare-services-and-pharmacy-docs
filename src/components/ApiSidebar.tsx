@@ -161,43 +161,7 @@ export function ApiSidebar({ className }: ApiSidebarProps) {
   };
 
   const handleEndpointClick = (endpoint: { path: string; hash: string }) => {
-    const targetId = endpoint.hash.substring(1);
-    
-    navigate(endpoint.path);
-    
-    const scrollToElement = (attempt = 0) => {
-      const maxAttempts = 20;
-      
-      const element = document.getElementById(targetId);
-      
-      if (element) {
-        const headerOffset = 20;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        element.style.transition = 'all 0.3s ease';
-        element.style.backgroundColor = '#dbeafe';
-        element.style.borderLeft = '4px solid #3b82f6';
-        element.style.paddingLeft = '12px';
-        
-        setTimeout(() => {
-          element.style.backgroundColor = '';
-          element.style.borderLeft = '';
-          element.style.paddingLeft = '';
-        }, 2000);
-      } else if (attempt < maxAttempts) {
-        setTimeout(() => scrollToElement(attempt + 1), 100);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-    
-    scrollToElement();
+    navigate(endpoint.path + endpoint.hash);
   };
 
   return (

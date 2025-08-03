@@ -1,8 +1,32 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { EndpointCard } from '@/components/EndpointCard';
 
 export function OrdersPage() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        const headerOffset = 20;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        el.style.transition = "all 0.3s ease";
+        el.style.backgroundColor = "#dbeafe";
+        el.style.borderLeft = "4px solid #3b82f6";
+        el.style.paddingLeft = "12px";
+        setTimeout(() => {
+          el.style.backgroundColor = "";
+          el.style.borderLeft = "";
+          el.style.paddingLeft = "";
+        }, 2000);
+      }
+    }
+  }, [location.hash]);
+
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="mb-8">

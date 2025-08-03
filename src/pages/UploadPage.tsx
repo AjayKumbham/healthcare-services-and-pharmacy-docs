@@ -1,8 +1,31 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { EndpointCard } from '@/components/EndpointCard';
 
 export function UploadPage() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        const headerOffset = 20;
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        el.style.transition = 'all 0.3s ease';
+        el.style.backgroundColor = '#dbeafe';
+        el.style.borderLeft = '4px solid #3b82f6';
+        el.style.paddingLeft = '12px';
+        setTimeout(() => {
+          el.style.backgroundColor = '';
+          el.style.borderLeft = '';
+          el.style.paddingLeft = '';
+        }, 2000);
+      }
+    }
+  }, [location.hash]);
   return (
     <div className="max-w-4xl mx-auto p-4 sm:p-6">
       <div className="mb-6 sm:mb-8">
@@ -18,21 +41,22 @@ export function UploadPage() {
       </div>
 
       <div className="space-y-6 sm:space-y-8">
-        <EndpointCard
-          method="POST"
-          path="/api/auth/upload"
-          description="Upload a prescription file (PDF, image, etc.) for parsing and extraction of patient and medication data."
-          auth={true}
-          parameters={[
-            {
-              name: 'file',
-              type: 'File',
-              location: 'body',
-              required: true,
-              description: 'Prescription file to upload (multipart/form-data)'
-            }
-          ]}
-          requestExample={`POST /api/auth/upload
+        <div id="upload-and-parse-prescription-file">
+          <EndpointCard
+            method="POST"
+            path="/api/auth/upload"
+            description="Upload a prescription file (PDF, image, etc.) for parsing and extraction of patient and medication data."
+            auth={true}
+            parameters={[
+              {
+                name: 'file',
+                type: 'File',
+                location: 'body',
+                required: true,
+                description: 'Prescription file to upload (multipart/form-data)'
+              }
+            ]}
+            requestExample={`POST /api/auth/upload
 Authorization: Bearer <jwt-token>
 Content-Type: multipart/form-data
 
@@ -42,7 +66,7 @@ Content-Type: application/pdf
 
 [file content]
 --boundary--`}
-          responseExample={`200 OK
+            responseExample={`200 OK
 Content-Type: application/json
 
 {
@@ -58,22 +82,23 @@ Content-Type: application/json
     { "name": "Metformin 500mg", "days": "60" }
   ]
 }`}
-          errorResponses={[
-            {
-              status: '400 Bad Request',
-              description: 'Invalid or missing file'
-            },
-            {
-              status: '500 Internal Server Error',
-              description: 'Parsing or extraction error'
-            }
-          ]}
-          notes={[
-            'Supports PDF and image formats',
-            'Response fields depend on document content',
-            'Some fields may be missing if not found in document'
-          ]}
-        />
+            errorResponses={[
+              {
+                status: '400 Bad Request',
+                description: 'Invalid or missing file'
+              },
+              {
+                status: '500 Internal Server Error',
+                description: 'Parsing or extraction error'
+              }
+            ]}
+            notes={[
+              'Supports PDF and image formats',
+              'Response fields depend on document content',
+              'Some fields may be missing if not found in document'
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
