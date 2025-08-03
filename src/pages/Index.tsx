@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Heart, Menu } from 'lucide-react';
 import { ApiSidebar } from '@/components/ApiSidebar';
 import { LandingPage } from '@/components/LandingPage';
@@ -16,9 +16,11 @@ import { PamPage } from './PamPage';
 import { PrescriptionsPage } from './PrescriptionsPage';
 import { CartPage } from './CartPage';
 import { useState } from 'react';
+import NotFound from './NotFound';
 
 const Index = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -72,7 +74,7 @@ const Index = () => {
 
             {/* Back to Home button for desktop */}
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => navigate('/')}
               className="hidden lg:flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors text-sm px-3 py-1.5 rounded-md hover:bg-accent"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,7 +111,7 @@ const Index = () => {
           {/* Back button for mobile */}
           <div className="lg:hidden sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b px-4 py-3">
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => navigate('/')}
               className="flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors text-sm"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,6 +135,8 @@ const Index = () => {
               <Route path="/pam/*" element={<PamPage />} />
               <Route path="/prescriptions/*" element={<PrescriptionsPage />} />
               <Route path="/cart/*" element={<CartPage />} />
+              {/* Catch-all route for 404 */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </main>
