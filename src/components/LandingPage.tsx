@@ -555,9 +555,11 @@ export function LandingPage() {
                   <div className="flex justify-center">
                     <div className="w-full max-w-4xl h-64 sm:h-80 lg:h-96 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
                       <div className="text-center px-4">
-                        <Heart className="w-8 h-8 sm:w-12 sm:h-12 text-primary/40 mx-auto mb-4" />
-                        <p className="text-gray-500 text-base sm:text-lg">Architecture Diagram</p>
-                        <p className="text-gray-400 text-xs sm:text-sm">Will be updated with actual diagram</p>
+                        <img
+                          src="/architecture.png"
+                          alt="Architecture Diagram"
+                          className="w-full h-auto object-contain"
+                        />
                       </div>
                     </div>
                   </div>

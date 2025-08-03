@@ -58,7 +58,7 @@ const Index = () => {
                 <Heart className="w-5 h-5 text-primary-foreground" />
               </div>
               <div className="min-w-0 flex-1">
-                <h1 className="text-lg font-bold text-primary truncate"></h1>
+                <h1 className="text-lg font-bold text-primary truncate">Developer & Platform Docs</h1>
                 <p className="text-xs text-muted-foreground hidden sm:block truncate">Complete reference for all endpoints</p>
               </div>
             </div>
