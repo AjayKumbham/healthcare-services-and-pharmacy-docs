@@ -442,13 +442,11 @@ export function LandingPage() {
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary px-4">
-            Healthcare Services & Pharmacy Platform
+            Healthcare Services & Pharmacy Platform 
           </h1>
           
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
-            Complete healthcare management platform with comprehensive API documentation. 
-            Explore our modular architecture, secure authentication, and enterprise-grade features 
-            designed for patients, pharmacies, and healthcare administrators.
+          Comprehensive developer documentation covering features, APIs, system architecture, data models, and UI overview for our healthcare management platform designed for patients, pharmacies, and healthcare administrators.
           </p>
           
           {/* Stats Section - Made fully responsive */}
@@ -916,13 +914,13 @@ export function LandingPage() {
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-primary-foreground rounded-lg flex items-center justify-center">
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
               </div>
-              <span className="text-lg sm:text-xl font-bold">HealthCare API</span>
+              <span className="text-lg sm:text-xl font-bold">Developer & Platform Docs</span>
             </div>
             <p className="text-primary-foreground/80 mb-4 text-sm sm:text-base px-4">
-              Complete healthcare services and pharmacy management platform with comprehensive API documentation.
+            Complete reference and implementation guide for healthcare services and pharmacy platform.
             </p>
             <p className="text-primary-foreground/60 text-xs sm:text-sm">
-              © 2024 HealthCare API Platform. All rights reserved.
+              © 2025 HealthCare Services & Pharmacy Platform Docs.
             </p>
           </div>
         </div>
