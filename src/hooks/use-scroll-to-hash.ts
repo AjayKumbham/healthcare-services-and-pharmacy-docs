@@ -12,11 +12,12 @@ export function useScrollToHash() {
 
     function tryScroll() {
       const el = document.getElementById(scrollId);
-      if (el) {
+      const main = document.querySelector("main.flex-1");
+      if (el && main) {
         const headerOffset = 20;
-        const elementPosition = el.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        const elementPosition = el.getBoundingClientRect().top - main.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + main.scrollTop - headerOffset;
+        main.scrollTo({ top: offsetPosition, behavior: "smooth" });
         el.style.transition = "all 0.3s ease";
         el.style.backgroundColor = "#dbeafe";
         el.style.borderLeft = "4px solid #3b82f6";
