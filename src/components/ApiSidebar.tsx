@@ -161,7 +161,8 @@ export function ApiSidebar({ className }: ApiSidebarProps) {
   };
 
   const handleEndpointClick = (endpoint: { path: string; hash: string }) => {
-    navigate(endpoint.path + endpoint.hash);
+    const scrollId = endpoint.hash.replace('#', '');
+    navigate(endpoint.path + '?scroll=' + scrollId);
   };
 
   return (

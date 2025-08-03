@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export function useScrollToHash() {
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const scrollId = searchParams.get("scroll");
 
   useEffect(() => {
-    if (!location.hash) return;
-    const id = location.hash.replace("#", "");
+    if (!scrollId) return;
     let attempts = 0;
     const maxAttempts = 20;
 
     function tryScroll() {
-      const el = document.getElementById(id);
+      const el = document.getElementById(scrollId);
       if (el) {
         const headerOffset = 20;
         const elementPosition = el.getBoundingClientRect().top;
@@ -33,5 +33,5 @@ export function useScrollToHash() {
     }
 
     tryScroll();
-  }, [location.hash]);
+  }, [scrollId]);
 }
