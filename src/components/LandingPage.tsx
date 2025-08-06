@@ -555,11 +555,13 @@ export function LandingPage() {
                   <div className="flex justify-center">
                     <div className="w-full max-w-4xl h-64 sm:h-80 lg:h-96 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
                       <div className="text-center px-4">
-                        <img
-                          src="/architecture.png"
-                          alt="Architecture Diagram"
-                          className="w-full h-auto object-contain"
-                        />
+                        <a href={`${import.meta.env.BASE_URL}architecture.png`} target="_blank" rel="noopener noreferrer">
+                          <img
+                            src={`${import.meta.env.BASE_URL}architecture.png`}
+                            alt="Architecture Diagram"
+                            className="w-full h-auto object-contain"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
